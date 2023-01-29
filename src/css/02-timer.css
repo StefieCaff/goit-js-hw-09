@@ -1,0 +1,35 @@
+input,
+button {
+  margin: 10px 5px 20px 7px;
+  border-radius: 9px;
+ 
+}
+
+.timer {
+  display: flex;
+  justify-content: space-evenly;
+  border: 2px solid;
+  border-radius: 50px;
+  font-family: Courier New, monospace;
+  background-image: linear-gradient(to right, rgba(0, 255, 110, 0), rgb(0, 255, 55));;
+}
+
+.field {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;  
+}
+
+.label {
+  color:black;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.value{
+  color: black;
+  font-weight: 700;
+  font-size: 36px;
+}
