@@ -1,6 +1,5 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
-require("flatpickr/dist/themes/material_green.css");
 
 
 const calendarInput = document.querySelector("input#datetime-picker");
