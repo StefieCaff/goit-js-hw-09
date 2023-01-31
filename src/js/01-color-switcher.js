@@ -1,6 +1,6 @@
 
 //grab elements
-
+const startBtn = document.querySelector('button[data-start="start"]');
 const stopBtn = document.querySelector('button[data-stop="stop"]');
 const backgroundElem = document.querySelector("body");
 let timerID = null;
