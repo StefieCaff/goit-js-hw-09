@@ -1,7 +1,7 @@
 input,
 button {
   margin: 10px 5px 20px 7px;
-  border-radius: 15px;
+  border-radius: 2px;
   border: 2px solid whitesmoke;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   outline: .5px solid grey;
@@ -12,10 +12,17 @@ input {
 }
 
 button {
-background-color: rgb(0, 255, 170);
+background-color: rgb(34, 201, 165);
 padding: 5px 20px;
-color: black;
+color: rgba(1, 43, 26, 0.944);
 font-size: 14px;
+font-weight: 700;
+}
+
+button[disabled] {
+  background-color: rgb(210, 213, 212);
+  border: none;
+  box-shadow: none;
 }
 
 .timer {
@@ -24,29 +31,29 @@ font-size: 14px;
   width: 420px;
   border: 3px solid whitesmoke;
   outline: .1px solid grey;
-  border-radius: 40px;
+  border-radius: 6px;
   font-family: Courier New, monospace;
-  background-image: linear-gradient(to right, rgba(0, 255, 170, 0), rgb(0, 255, 170));
+  background-image: linear-gradient(to right, rgba(0, 255, 170, 0),rgb(34, 201, 165));
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .field {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 10px 15px;
 }
 
 .label {
-  color: black;
+  color:rgba(1, 43, 26, 0.917);
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .value{
   color: whitesmoke;
   font-weight: 700;
-  font-size: 24px;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-size: 30px;
+  text-shadow: -1px 0 rgba(1, 43, 26, 0.917), 0 1px rgba(1, 43, 26, 0.917), 1px 0 rgba(1, 43, 26, 0.917), 0 -1px rgba(1, 43, 26, 0.917);
 }
