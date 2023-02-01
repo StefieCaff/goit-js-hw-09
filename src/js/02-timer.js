@@ -2,8 +2,9 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 
 const startBtn = document.querySelector('button[data-start="start"]'); //start button
-const calendarInput = document.querySelector("input#datetime-picker"); //input field for calendar/time selection
-const fp = flatpickr(calendarInput, {});  // flatpickr
+const userInput = document.querySelector("input#datetime-picker"); //input field for user/time selection
+const fp = flatpickr(userInput, {});  // flatpickr
+let timerDate = userInput.value;
 
 const options = {
   enableTime: true,
@@ -11,35 +12,34 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   theme: "material_green",
-  onClose(selectedDates) {
-      console.log(selectedDates[0]);
+  onClose(selectedDates, dateStr) {
+    console.log(selectedDates[0]);
    
     function pastDateAlert() {
-      var userDate = selectedDates[0];
-        var nowDate = new Date();
+      let userDate = selectedDates[0];
+      let nowDate = new Date();
         
       if (nowDate > userDate) {
           alert("Please choose a date in the future");
         return false;
       }
       if (nowDate < userDate) {
-        startBtn.disabled = false;
+        enableBtn(startBtn);
         return true;
       }
-    };
-      
+    };    
     pastDateAlert()
   },
 };
 
- //turns start button off
-function disableBtn() {        
-    startBtn.disabled = true;
+ //turns button off
+function disableBtn(btnName) {        
+    btnName.disabled = true;
 };
 
-//turns start button on
-function enableBtn() {        
-    startBtn.disabled = false;
+//turns button on
+function enableBtn(btnName) {        
+    btnName.disabled = false;
 };
 
 function convertMs(ms) {
@@ -65,8 +65,10 @@ console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
 console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
 console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
 
+
 flatpickr(calendarInput, options);
-// startBtn.addEventListener("click", () => {
-//     convertMs(selectedDate);
-//     disableBtn(); 
-// });
+startBtn.addEventListener("click", () => {
+  convertMs(timerDate);
+  console.log(timerDate);
+    disableBtn(startBtn); 
+});
