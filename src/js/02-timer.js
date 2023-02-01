@@ -67,8 +67,3 @@ console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20
 
 
 flatpickr(calendarInput, options);
-startBtn.addEventListener("click", () => {
-  convertMs(timerDate);
-  console.log(timerDate);
-    disableBtn(startBtn); 
-});
