@@ -1,10 +1,18 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const startBtn = document.querySelector('button[data-start="start"]'); //start button
-const userInput = document.querySelector("input#datetime-picker"); //input field for user/time selection
-const fp = flatpickr(userInput, {});  // flatpickr
-let timerDate = userInput.value;
+
+const refs = {
+  userInput: document.querySelector("input#datetime-picker"),
+  startBtn: document.querySelector('button[data-start]'),
+  days: document.querySelector('span[data-days]'),
+  hours: document.querySelector('span[data-hours]'),
+  minutes: document.querySelector('span[data-minutes]'),
+  seconds: document.querySelector('span[data-seconds]'),
+};
+
+const fp = flatpickr(refs.userInput, {}); 
 
 const options = {
   enableTime: true,
@@ -12,35 +20,58 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   theme: "material_green",
-  onClose(selectedDates, dateStr) {
-    console.log(selectedDates[0]);
+  onClose(selectedDates) {
+    const selectedTime = selectedDates[0];
+    const startTime = Date.now();
    
-    function pastDateAlert() {
-      let userDate = selectedDates[0];
-      let nowDate = new Date();
+    if (selectedTime < startTime) {
+      Notify.failure("Please choose a date in the future.");
+      refs.startBtn.disabled = true;
+      return;
+    };
+    
+    refs.startBtn.disabled = false;
+    let intervalId = null;
+    
+    refs.startBtn.addEventListener('click', countDown());
+    
+    function countDown() {
+      refs.startBtn.disable = true;
+      refs.userInput.disabled = true;
+
+      intervalId = setInterval(() => {
+        const currentTime = Date.now();
+
+        if (selectedTime < currentTime) {
+          clearInterval(intervalId);
+          refs.userInput.disabled = false;
+          return;
+        }
         
-      if (nowDate > userDate) {
-          alert("Please choose a date in the future");
-        return false;
-      }
-      if (nowDate < userDate) {
-        enableBtn(startBtn);
-        return true;
-      }
-    };    
-    pastDateAlert()
+        const timeDifference = selectedTime - currentTime;
+        const { days, hours, minutes, seconds } = convertMs(timeDifference);
+        console.log(convertMs(timeDifference));
+
+        refs.days.textContent = addLeadingZero(days);
+        refs.hours.textContent = addLeadingZero(hours);  
+        refs.minutes.textContent = addLeadingZero(minutes);
+        refs.seconds.textContent = addLeadingZero(seconds);
+      },1000)
+    };
   },
 };
 
- //turns button off
-function disableBtn(btnName) {        
-    btnName.disabled = true;
+flatpickr(refs.userInput, options);
+
+function addLeadingZero(num) {
+  if (num < 10) {
+    num = num.padStart(2, "0");
+    return num;
+  } 
+  return num;
 };
 
-//turns button on
-function enableBtn(btnName) {        
-    btnName.disabled = false;
-};
+
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -64,6 +95,3 @@ function convertMs(ms) {
 console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
 console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
 console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
-
-
-flatpickr(calendarInput, options);
