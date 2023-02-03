@@ -53,10 +53,10 @@ const options = {
         console.log(convertMs(timeDifference));
 
         refs.days.textContent = addLeadingZero(days);
-        refs.hours.textContent = addLeadingZero(hours);  
+        refs.hours.textContent = addLeadingZero(hours);
         refs.minutes.textContent = addLeadingZero(minutes);
         refs.seconds.textContent = addLeadingZero(seconds);
-      },1000)
+      }, 1000);
     };
   },
 };
