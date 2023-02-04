@@ -2,9 +2,9 @@ import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-
+//object of html elements for use
 const refs = {
-  userInput: document.querySelector("input#datetime-picker"),
+  timePicker: document.querySelector("input#datetime-picker"),
   startBtn: document.querySelector('button[data-start]'),
   days: document.querySelector('span[data-days]'),
   hours: document.querySelector('span[data-hours]'),
@@ -12,8 +12,10 @@ const refs = {
   seconds: document.querySelector('span[data-seconds]'),
 };
 
-const fp = flatpickr(refs.userInput, {}); 
+// initializing the calendar picker from flatpicker library
+const fp = flatpickr(refs.timePicker, {}); 
 
+// adding options to the calendar 
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -23,7 +25,8 @@ const options = {
   onClose(selectedDates) {
     const selectedTime = selectedDates[0];
     const startTime = Date.now();
-   
+    
+// logic for past date notification from notiflix   
     if (selectedTime < startTime) {
       Notify.failure("Please choose a date in the future.");
       refs.startBtn.disabled = true;
@@ -33,25 +36,25 @@ const options = {
     refs.startBtn.disabled = false;
     let intervalId = null;
     
-    refs.startBtn.addEventListener('click', countDown());
-    
-    function countDown() {
-      refs.startBtn.disable = true;
-      refs.userInput.disabled = true;
+    refs.startBtn.addEventListener('click', startCountdown());
+
+//logic for timer and conversion from ms  
+    function startCountdown() {
+      refs.startBtn.disabled = true;
+      refs.timePicker.disabled = true;
 
       intervalId = setInterval(() => {
         const currentTime = Date.now();
 
         if (selectedTime < currentTime) {
           clearInterval(intervalId);
-          refs.userInput.disabled = false;
+          refs.timePicker.disabled = false;
           return;
         }
         
         const timeDifference = selectedTime - currentTime;
         const { days, hours, minutes, seconds } = convertMs(timeDifference);
-        console.log(convertMs(timeDifference));
-
+      
         refs.days.textContent = addLeadingZero(days);
         refs.hours.textContent = addLeadingZero(hours);
         refs.minutes.textContent = addLeadingZero(minutes);
@@ -61,17 +64,11 @@ const options = {
   },
 };
 
-flatpickr(refs.userInput, options);
+flatpickr(refs.timePicker, options);
 
 function addLeadingZero(num) {
-  if (num < 10) {
-    num = num.padStart(2, "0");
-    return num;
-  } 
-  return num;
+  return num.toString().padStart(2, "0");
 };
-
-
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -90,8 +87,4 @@ function convertMs(ms) {
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
   return { days, hours, minutes, seconds };
-}
-
-console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
+};
