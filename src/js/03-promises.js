@@ -9,10 +9,6 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
   const amount = document.getElementsByName("amount")[0];
   const createBtn = document.querySelector("button");
 
-const testingInput = () => {
 
-  console.log("hi");
- 
-};
-
-createBtn.addEventListener('click', testingInput());
+console.log("hi");
+console.log("world")
