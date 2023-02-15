@@ -1,6 +1,6 @@
 input,
 button {
-  margin: 10px 5px 20px 7px;
+  margin-left: 40px;
   border-radius: 2px;
   border: 2px solid whitesmoke;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -29,6 +29,8 @@ button[disabled] {
   display: flex;
   justify-content: center;
   width: 420px;
+  margin-left: 40px;
+  margin-top: 20px;
   border: 3px solid whitesmoke;
   outline: .1px solid grey;
   border-radius: 6px;

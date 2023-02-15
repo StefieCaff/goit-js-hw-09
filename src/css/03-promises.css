@@ -4,29 +4,24 @@
   
 }
 
-h1 {
-    font: inherit;
-  font-size: 25px;
-  margin-left: 10px;
-}
-
 label {
   display: flex;
   flex-direction: column;
   width: 150px;
-  margin-left: 10px;
+  margin-left: 40px;
   margin-top: 5px;
    
 }
 
-button {
+.create-btn, 
+.reset-btn {
   font: inherit;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 145px;
   padding: 5px;
-  margin: 20px 0 0 10px;
+  margin: 20px 0 0 40px;
   border-radius: 5px;
   box-shadow: none;
 }
