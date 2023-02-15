@@ -3,7 +3,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const form = document.querySelector('form');
 
 //function to create promise and settimeout to mimic api call
-function createPromise(delay, position) {
+function createPromise(position, delay) {
   
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -26,7 +26,7 @@ function callPromise(e) {
   let amount = Number(e.target.amount.value);
 
   for (let i = 0; i < amount; i += 1) {
-    createPromise(firstDelay, i + 1)
+    createPromise(i + 1, firstDelay)
     .then(({ position, delay }) => {
       Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
     })
