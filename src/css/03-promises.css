@@ -1,0 +1,42 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+h1 {
+    font: inherit;
+  font-size: 25px;
+  margin-left: 10px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  margin-left: 10px;
+  margin-top: 5px;
+   
+}
+
+button {
+  font: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 145px;
+  padding: 5px;
+  margin: 20px 0 0 10px;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.create-btn {
+  border-color: rgb(137, 229, 194);
+  background-color: rgb(188, 218, 206);
+}
+
+.reset-btn {
+  border-color: rgb(215, 159, 245);
+  background-color: rgb(220, 206, 227);
+}

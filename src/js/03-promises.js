@@ -17,7 +17,7 @@ function createPromise(position, delay) {
   });
 };
 
-//function to loop through number of times entered into form
+//function to call first promise then loop through number of times w/ step delay entered into form 
 
 function callPromise(e) {
   e.preventDefault();
