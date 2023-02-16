@@ -13,15 +13,15 @@
     <form class="form" action="#" method="POST" name="promise-form" autocomplete="off">
       <label>
         First delay (ms)
-        <input type="number" name="delay" required />
+        <input type="number" name="delay" required min="0"/>
       </label>
       <label>
         Delay step (ms)
-        <input type="number" name="step" required />
+        <input type="number" name="step" required min="0"/>
       </label>
       <label>
         Number to create
-        <input type="number" name="amount" required />
+        <input type="number" name="amount" required min="0"/>
       </label>
       <button class="create-btn" type="submit">Create promises</button>
       <button class="reset-btn" type="reset">Reset promises</button>
