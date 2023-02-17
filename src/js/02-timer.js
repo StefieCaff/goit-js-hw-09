@@ -1,9 +1,11 @@
-//imports
+//-------------imports--------------------------------------
+
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-//object of html elements
+//-------------object of html elements--------------------
+
 const refs = {
   timePicker: document.querySelector("input#datetime-picker"),
   startBtn: document.querySelector('button[data-start]'),
@@ -13,11 +15,9 @@ const refs = {
   seconds: document.querySelector('span[data-seconds]'),
 };
 
-// initializing the calendar picker from flatpicker library
-const fp = flatpickr(refs.timePicker, {}); 
-
-//adding options to the calendar 
- const options = {
+//-----------adding options to the calendar-------------------
+ 
+const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
@@ -34,11 +34,11 @@ const fp = flatpickr(refs.timePicker, {});
       return;
     };
     
-      refs.startBtn.disabled = false;
+    refs.startBtn.disabled = false;
         
-      let intervalId = null;
+    let intervalId = null;
   
-    //refs.startBtn.addEventListener('click', startCountdown());
+    refs.startBtn.addEventListener('click', startCountdown);
     
 //logic for timer and conversion from ms  
     function startCountdown() {
@@ -61,14 +61,17 @@ const fp = flatpickr(refs.timePicker, {});
         refs.hours.textContent = addLeadingZero(hours);
         refs.minutes.textContent = addLeadingZero(minutes);
         refs.seconds.textContent = addLeadingZero(seconds);
+
       }, 1000);
+      
     };
   },
 };
 
 
-flatpickr(refs.timePicker, options);
+//----------------helper functions-------------------------
 
+//in case of one digit number
 function addLeadingZero(num) {
   return num.toString().padStart(2, "0");
 };
@@ -91,3 +94,6 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 };
+
+//----------------initialize library------------------
+flatpickr(refs.timePicker, options);
