@@ -50,12 +50,12 @@ a,
 ul {
   text-decoration: none;
   list-style: none;
+  transition: 0.7s;
 }
 
 a:hover,
 a:focus {
   color: rgb(178, 127, 255);
-  transition: 0.7s;
 }
 
 .nav {

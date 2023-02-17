@@ -1,8 +1,9 @@
+//imports
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-//object of html elements for use
+//object of html elements
 const refs = {
   timePicker: document.querySelector("input#datetime-picker"),
   startBtn: document.querySelector('button[data-start]'),
@@ -15,8 +16,8 @@ const refs = {
 // initializing the calendar picker from flatpicker library
 const fp = flatpickr(refs.timePicker, {}); 
 
-// adding options to the calendar 
-const options = {
+//adding options to the calendar 
+ const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
@@ -33,11 +34,12 @@ const options = {
       return;
     };
     
-    refs.startBtn.disabled = false;
-    let intervalId = null;
+      refs.startBtn.disabled = false;
+        
+      let intervalId = null;
+  
+    //refs.startBtn.addEventListener('click', startCountdown());
     
-    refs.startBtn.addEventListener('click', startCountdown());
-
 //logic for timer and conversion from ms  
     function startCountdown() {
       refs.startBtn.disabled = true;
@@ -63,6 +65,7 @@ const options = {
     };
   },
 };
+
 
 flatpickr(refs.timePicker, options);
 
